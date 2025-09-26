@@ -1,0 +1,308 @@
+/* ========== Design tokens ========== */
+:root{
+  --bg:#f6f6f8;
+  --panel:#ffffff;
+  --text:#101114;
+  --muted:#6b7280;
+  --accent:#a31414;           /* outgoing bubble red */
+  --accent-ink:#ffffff;
+  --incoming:#eef0f3;
+  --divider:#e6e7eb;
+  --banner:#f2f6ff;
+  --banner-ink:#1f2937;
+  --ok:#16a34a;
+  --warn:#d9534f;
+}
+
+/* ========== Base ========== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.5 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Root app frame (centers auth/room cards; stretches for chat) */
+.app{
+  height:100vh;
+  max-width:420px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--divider);
+}
+
+/* ========== Step 1–2 cards (Auth / Room) ========== */
+/* Auth & Room Card */
+.container {
+  margin: auto;
+  width: min(92%, 370px);
+  background: #fff;
+  padding: 28px 22px 24px 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(16,17,20,.10);
+  border: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.container h2 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.container p {
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: var(--muted);
+}
+.container input[type="text"],
+.container input[type="password"] {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  margin: 8px 0;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  background: #f6f6f8;
+  transition: border-color 0.2s;
+}
+.container input:focus {
+  border-color: var(--accent);
+}
+.container button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+.container button:hover {
+  background: #a31414cc;
+}
+#create-room-btn {
+  background: var(--ok) !important;
+}
+#create-room-btn:hover {
+  background: #16a34acc !important;
+}
+#join-room-btn {
+  background: var(--accent) !important;
+}
+#join-room-btn:hover {
+  background: #a31414cc !important;
+}
+#auth-msg, #room-msg {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--warn);
+  font-size: 1rem;
+}
+#created-room-id {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--ok);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+.container hr {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 18px 0;
+}
+.container [id^="toggle-auth"] {
+  font-size: 0.98rem;
+  color: var(--muted);
+}
+.container a {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ========== Chat header ========== */
+.app-header{
+  height:56px;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  gap:10px;
+  border-bottom:1px solid var(--divider);
+}
+.back-btn{
+  width:36px;height:36px;border-radius:18px;
+  border:none;background:transparent;cursor:pointer;
+}
+.back-btn .chevron{font-size:22px;color:var(--text)}
+.room-meta{display:flex;align-items:center;gap:10px;min-width:0}
+.room-avatar{
+  width:28px;height:28px;border-radius:14px;
+  background:#dbe1f0;object-fit:cover;flex:0 0 auto;
+}
+.room-name{
+  font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.anon-toggle{
+  margin-left:auto;
+  width:36px;height:36px;border-radius:18px;
+  border:none;background:#f3f4f6;cursor:pointer;
+}
+.anon-toggle .mask{font-size:18px}
+
+/* Anonymous banner */
+.anon-banner{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;margin:8px 12px;border-radius:10px;
+  background:var(--banner);color:var(--banner-ink);
+  font-size:14px;border:1px solid #dbeafe;
+}
+
+/* ========== Messages area ========== */
+.messages{
+  flex:1 1 auto;
+  overflow-y:auto;
+  background:linear-gradient(#fafafb,#f4f5f7);
+  padding:10px 10px 0 10px;
+  min-height:0;
+  max-height:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+/* Optional day divider */
+.day-divider{
+  display:flex;align-items:center;gap:8px;margin:12px 0;
+  color:var(--muted);font-size:12px;
+}
+.day-divider:before,.day-divider:after{
+  content:"";flex:1;height:1px;background:var(--divider);
+}
+.day-divider span{padding:2px 8px;background:#fff;border:1px solid var(--divider);border-radius:12px}
+
+/* Message row */
+.msg{
+  display:flex;align-items:flex-end;margin:6px 0;gap:6px;
+}
+.msg.in{justify-content:flex-start}
+.msg.out{justify-content:flex-end}
+
+/* Avatar (incoming only) */
+.msg .avatar{
+  width:28px;height:28px;border-radius:14px;background:#e5e7eb;flex:0 0 auto;
+}
+
+/* Bubble */
+.bubble{
+  max-width:75%;
+  padding:8px 10px;
+  border-radius:14px;
+  position:relative;
+  word-wrap:break-word;
+  box-shadow:0 1px 0 rgba(16,17,20,.05);
+}
+.in .bubble{
+  background:var(--incoming);color:var(--text);
+  border-top-left-radius:6px;
+}
+.out .bubble{
+  background:var(--accent);color:var(--accent-ink);
+  border-top-right-radius:6px;
+}
+
+/* Sender label (incoming) */
+.sender{
+  font-size:11px;color:var(--muted);margin:2px 0 0 4px;
+}
+
+/* Content and meta */
+.text{white-space:pre-wrap}
+.meta{
+  display:flex;align-items:center;gap:6px;
+  margin-top:4px;font-size:11px;opacity:.8;
+}
+.time{letter-spacing:.2px}
+.ticks{
+  display:inline-flex;gap:2px;transform:translateY(1px);
+}
+.tick{
+  width:10px;height:10px;display:inline-block;
+  background:currentColor;
+  mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.285-5.011-3.715 3.444 9 8.999 15-15.285z"/></svg>') center/12px 12px no-repeat;
+  -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.285-5.011-3.715 3.444 9 8.999 15-15.285z"/></svg>') center/12px 12px no-repeat;
+}
+.out .tick{color:#ffd9d9}
+.out.delivered .tick{color:#ffe9e9}
+.out.read .tick{color:#ffffff}
+
+/* Typing */
+.typing{
+  padding:8px 14px;color:var(--muted);font-size:13px;
+}
+
+/* ========== Composer ========== */
+.composer{
+  display:flex;align-items:center;justify-content:center;
+  padding:0;border-top:1px solid var(--divider);
+  background:#fff;
+  margin-top:auto;
+  width:100%;
+  box-shadow:0 -2px 8px #e6e7eb1a;
+}
+.icon-btn{
+  width:40px;height:40px;border-radius:20px;border:none;background:#f3f4f6;cursor:pointer;
+  font-size:18px;
+}
+#composerForm{
+  display:flex;align-items:center;gap:10px;
+  background:#f6f7fb;border:1px solid var(--divider);border-radius:22px;padding:0 10px;
+  width:100%;
+  margin:10px 10px 14px 10px;
+}
+.input{
+  flex:1 1 auto;
+  border:none;
+  background:transparent;
+  height:38px;
+  font-size:15px;
+  outline:none;
+}
+.send-btn{
+  width:44px;
+  height:44px;
+  border-radius:22px;
+  border:none;
+  cursor:pointer;
+  background:var(--accent);
+  color:var(--accent-ink);
+  font-size:20px;
+  display:grid;
+  place-items:center;
+  margin-left:8px;
+}
+
+/* Scrollbar (webkit) */
+.messages::-webkit-scrollbar{width:8px}
+.messages::-webkit-scrollbar-thumb{background:#d6d9df;border-radius:8px}
+
+/* Small screens */
+@media (max-width:420px){
+  .bubble{max-width:82%}
+  .messages{
+    max-height:220px;
+    min-height:120px;
+  }
+}

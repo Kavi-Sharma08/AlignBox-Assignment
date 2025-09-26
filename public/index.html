@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Group Chat App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app" id="appRoot">
+    <!-- Auth Section -->
+    <div id="auth-section" class="container" style="box-shadow:0 8px 32px rgba(16,17,20,.12);padding-top:38px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:18px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2950/2950736.png" alt="Chat Logo" style="width:56px;height:56px;border-radius:16px;box-shadow:0 2px 8px #e6e7eb;">
+        <h2 style="margin:0;color:var(--accent);font-size:2rem;font-weight:800;letter-spacing:1px;">Group Chat</h2>
+      </div>
+      <p style="text-align:center;color:var(--muted);margin-bottom:18px;font-size:1.08rem;">Sign in to start chatting with your group.</p>
+      <input type="text" id="username" placeholder="Username" style="margin-bottom:10px;" />
+      <input type="password" id="password" placeholder="Password" style="margin-bottom:10px;" />
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;">
+        <button id="login-btn">Login</button>
+        <button id="register-btn" style="display:none;">Register</button>
+      </div>
+      <div style="text-align:center;margin-top:12px;font-size:1rem;">
+        <span id="toggle-auth">Don't have an account? <a href="#" id="show-register">Register</a></span>
+      </div>
+      <div id="auth-msg" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- Room Section -->
+    <div id="room-section" class="container" style="display:none;">
+      <h2>Create or Join a Room</h2>
+      <div style="margin-bottom:18px;text-align:center;color:var(--muted);">Create a new group or join an existing one using a Room ID.</div>
+      <button id="create-room-btn" style="width:100%;margin-bottom:10px;background:var(--ok);color:#fff;">Create Room</button>
+      <div id="created-room-id" style="display:none;"></div>
+      <div style="margin:18px 0;text-align:center;color:var(--muted);">— OR —</div>
+      <input type="text" id="room-id-input" placeholder="Enter Room ID">
+      <button id="join-room-btn" style="width:100%;margin-top:10px;background:var(--accent);color:#fff;">Join Room</button>
+      <div id="room-msg"></div>
+    </div>
+
+    <!-- Chat Section -->
+  <div id="chat-section" style="display:none;flex-direction:column;height:100vh;min-height:0;">
+      <header class="app-header">
+        <div class="room-meta">
+          <img class="room-avatar" src="/assets/room.png" alt="Room" />
+          <div class="room-name">Room: <span id="room-id-display"></span></div>
+        </div>
+        <button id="anonToggle" class="anon-toggle" aria-pressed="false" title="Toggle Anonymous">
+          <span class="mask">🎭</span>
+        </button>
+        <button id="leave-room-btn" style="margin-left:10px;background:var(--warn);color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;">Leave Room</button>
+      </header>
+      <main id="messages" class="messages" aria-live="polite"></main>
+      <div id="typing" class="typing" hidden>Someone is typing…</div>
+      <footer class="composer">
+        <form id="composerForm" autocomplete="off" style="display:flex;gap:10px;width:100%;">
+          <input id="messageInput" class="input" type="text" placeholder="Type a message …" maxlength="2000" required />
+          <button id="sendBtn" class="send-btn" aria-label="Send">➤</button>
+        </form>
+      </footer>
+    </div>
+  </div>
+  </div>
+
+  <!-- Socket.IO client (served by your Node server) -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="index.js" defer></script>
+</body>
+</html>
