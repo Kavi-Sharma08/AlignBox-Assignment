@@ -1,4 +1,3 @@
-/* ========== Design tokens ========== */
 :root{
   --bg:#f6f6f8;
   --panel:#ffffff;
@@ -12,10 +11,8 @@
   --banner-ink:#1f2937;
   --ok:#16a34a;
   --warn:#d9534f;
-}
-
-/* ========== Base ========== */
 *{box-sizing:border-box}
+}
 html,body{height:100%}
 body{
   margin:0;
@@ -23,8 +20,6 @@ body{
   color:var(--text);
   font:16px/1.5 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
-
-/* Root app frame (centers auth/room cards; stretches for chat) */
 .app{
   height:100vh;
   max-width:420px;
@@ -33,16 +28,12 @@ body{
   flex-direction:column;
   background:var(--panel);
   border:1px solid var(--divider);
-}
-
-/* ========== Step 1–2 cards (Auth / Room) ========== */
-/* Auth & Room Card */
+} 
 .container {
   margin: auto;
-  width: min(92%, 370px);
+  width: min(98%, 420px);
   background: #fff;
   padding: 28px 22px 24px 22px;
-  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(16,17,20,.10);
   border: 1px solid var(--divider);
   display: flex;
@@ -132,8 +123,6 @@ body{
   text-decoration: underline;
   cursor: pointer;
 }
-
-/* ========== Chat header ========== */
 .app-header{
   height:56px;
   display:flex;
@@ -161,16 +150,12 @@ body{
   border:none;background:#f3f4f6;cursor:pointer;
 }
 .anon-toggle .mask{font-size:18px}
-
-/* Anonymous banner */
 .anon-banner{
   display:flex;align-items:center;gap:8px;
   padding:10px 12px;margin:8px 12px;border-radius:10px;
   background:var(--banner);color:var(--banner-ink);
   font-size:14px;border:1px solid #dbeafe;
 }
-
-/* ========== Messages area ========== */
 .messages{
   flex:1 1 auto;
   overflow-y:auto;
@@ -182,8 +167,6 @@ body{
   flex-direction:column;
   justify-content:flex-end;
 }
-
-/* Optional day divider */
 .day-divider{
   display:flex;align-items:center;gap:8px;margin:12px 0;
   color:var(--muted);font-size:12px;
@@ -192,20 +175,14 @@ body{
   content:"";flex:1;height:1px;background:var(--divider);
 }
 .day-divider span{padding:2px 8px;background:#fff;border:1px solid var(--divider);border-radius:12px}
-
-/* Message row */
 .msg{
   display:flex;align-items:flex-end;margin:6px 0;gap:6px;
 }
 .msg.in{justify-content:flex-start}
 .msg.out{justify-content:flex-end}
-
-/* Avatar (incoming only) */
 .msg .avatar{
   width:28px;height:28px;border-radius:14px;background:#e5e7eb;flex:0 0 auto;
 }
-
-/* Bubble */
 .bubble{
   max-width:75%;
   padding:8px 10px;
@@ -222,13 +199,9 @@ body{
   background:var(--accent);color:var(--accent-ink);
   border-top-right-radius:6px;
 }
-
-/* Sender label (incoming) */
 .sender{
   font-size:11px;color:var(--muted);margin:2px 0 0 4px;
 }
-
-/* Content and meta */
 .text{white-space:pre-wrap}
 .meta{
   display:flex;align-items:center;gap:6px;
@@ -247,13 +220,9 @@ body{
 .out .tick{color:#ffd9d9}
 .out.delivered .tick{color:#ffe9e9}
 .out.read .tick{color:#ffffff}
-
-/* Typing */
 .typing{
   padding:8px 14px;color:var(--muted);font-size:13px;
 }
-
-/* ========== Composer ========== */
 .composer{
   display:flex;align-items:center;justify-content:center;
   padding:0;border-top:1px solid var(--divider);
@@ -293,12 +262,8 @@ body{
   place-items:center;
   margin-left:8px;
 }
-
-/* Scrollbar (webkit) */
 .messages::-webkit-scrollbar{width:8px}
 .messages::-webkit-scrollbar-thumb{background:#d6d9df;border-radius:8px}
-
-/* Small screens */
 @media (max-width:420px){
   .bubble{max-width:82%}
   .messages{
